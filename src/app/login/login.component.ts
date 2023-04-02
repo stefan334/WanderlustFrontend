@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-sverice';
 import { CookieService } from 'ngx-cookie-service';
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,13 +13,18 @@ export class LoginComponent implements OnInit {
   password: string;
   error: string;
 
-  constructor(private cookieService: CookieService, private authService: AuthService, private router: Router) {
+  constructor(public cookieService: CookieService, private authService: AuthService, private router: Router) {
     this.username='';
     this.password='';
     this.error='';
    }
 
   ngOnInit(): void {
+    console.log("test");
+    const token = this.cookieService.get('token');
+    const decodedToken = jwt_decode(token) as DecodedToken;
+    this.username = decodedToken.sub ;
+    console.log(this.username);
   }
 
   login(): void {
@@ -31,6 +36,8 @@ export class LoginComponent implements OnInit {
         expires.setHours(expires.getHours() + 1); // Set the expiration to 1 hour from now
         this.cookieService.set('token', response.access_token, expires);
         this.router.navigate(['/']);
+
+        
       },
       error => {
         console.log(error);
@@ -38,4 +45,13 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+  logout(): void{
+      this.cookieService.delete("token");
+      this.router.navigate(['/']);
+  }
+}
+interface DecodedToken {
+  sub: string;
+  exp: number;
 }

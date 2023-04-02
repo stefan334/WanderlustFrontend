@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-home-page',
@@ -7,13 +9,13 @@ import * as L from 'leaflet';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  username: string = "";
 
-  constructor() { }
-
+  constructor(public cookieService: CookieService) { }
+ 
   ngOnInit(): void {
     // Initialize the map
     const map = L.map('map', {scrollWheelZoom:false}).setView([0,0], 2);
-    
 
 
 
