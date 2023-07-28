@@ -1,41 +1,62 @@
-import pandas as pd
+import sys
+import psycopg2
 from annoy import AnnoyIndex
-# Read the CSV file
-data = pd.read_csv("travel_history.csv")
+from scipy.sparse import dok_matrix
 
-# Create a user-city matrix
-user_city_matrix = pd.crosstab(data["User"], data["City_id"])
-# Build a dictionary to map city IDs to names
-city_names = dict(zip(data["City_id"], data["Locations"]))
+# Load the target user ID and visited locations from command-line arguments
+target_user_id = int(sys.argv[1])
 
-# Build an Annoy index for the user-city matrix
-annoy_index = AnnoyIndex(user_city_matrix.shape[1], metric='angular')
-for i, row in enumerate(user_city_matrix.values):
-    annoy_index.add_item(i, row)
-annoy_index.build(100)  # Number of trees, higher value gives better precision
+# Connect to the database and retrieve user data
+connection = psycopg2.connect(host='localhost', port='5432', database='wanderlust', user='ivan334', password='stefan334')
+cursor = connection.cursor()
+cursor.execute("SELECT u.id, array_agg(l.id) FROM users u JOIN user_visited_locations uv ON u.id = uv.user_id JOIN locations l ON uv.location_id = l.id GROUP BY u.id")
+user_vectors = cursor.fetchall()
+target_user_visited_locations = None
+for user_id, visited_locations in user_vectors:
+    if user_id == target_user_id:
+        target_user_visited_locations = visited_locations
+        break
 
-def recommend_locations_annoy(user, annoy_index, user_city_matrix, top_n=3):
-    user_index = user_city_matrix.index.get_loc(user)
-    
-    # Find the most similar users using Annoy
-    similar_users_indices = annoy_index.get_nns_by_item(user_index, top_n + 1)[1:]
-    similar_users = user_city_matrix.index[similar_users_indices]
-    # Get the cities visited by the most similar users
-    visited_cities = user_city_matrix.loc[similar_users].sum()
-    
-    # Remove the cities already visited by the given user
-    visited_cities = visited_cities[user_city_matrix.loc[user] == 0]
-    
-    # Recommend the top cities
-    recommended_cities = visited_cities.sort_values(ascending=False).head(top_n).index
-    recommended_cities = [city_names[c] for c in recommended_cities]  # Replace IDs with names
-    
-    
-    return recommended_cities
 
+
+# Determine the maximum location ID
+max_location_id = max(max(visited_locations), max(location_id for (_, visited_locations) in user_vectors for location_id in visited_locations))
+
+# Create a sparse matrix to store the user vectors
+user_vectors_sparse = dok_matrix((40, max_location_id + 1), dtype=float)
+
+# Add vectors of users to the sparse matrix
+for i, (user_id, visited_locations) in enumerate(user_vectors):
+    for location_id in visited_locations:
+        user_vectors_sparse[user_id, location_id] = 1.0
     
 
-# Test the recommendation function
-user = "User5"
-recommended_cities = recommend_locations_annoy(user, annoy_index, user_city_matrix)
-print(f"Recommended cities for {user}: {', '.join(map(str, recommended_cities))}")
+# Load the pre-built Annoy index
+annoy_index = AnnoyIndex(user_vectors_sparse.shape[1], 'angular')  # Assuming locations are represented as high-dimensional vectors
+
+# Add vectors of users to the Annoy index
+for i, (user_id, visited_locations) in enumerate(user_vectors):
+    annoy_index.add_item(user_id, user_vectors_sparse[i, :].toarray().flatten())
+
+# Build the Annoy index
+annoy_index.build(n_trees=10)
+
+# Example usage: Find the nearest neighbors to the target user
+nearest_neighbors = annoy_index.get_nns_by_item(target_user_id, n=2)  # Adjust the value of n as per your requirement
+
+# Retrieve the recommended locations from the nearest neighbors
+recommended_locations = []
+for neighbor_user_id in nearest_neighbors:
+    # Fetch the visited locations of the neighbor user from the database
+    cursor.execute("SELECT location_id FROM user_visited_locations l WHERE user_id = %s", (neighbor_user_id,))
+    neighbor_visited_locations = cursor.fetchall()
+
+    recommended_locations.extend([location_id for (location_id,) in neighbor_visited_locations])
+
+# Remove visited locations from the recommendations
+recommended_locations = list(set(recommended_locations) - set(target_user_visited_locations))
+print(recommended_locations)
+
+# Close the database connection
+cursor.close()
+connection.close()

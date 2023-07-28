@@ -1,16 +1,11 @@
 User,Locations
-User1,Paris
-User1,London
-User1,Tokyo
-User1,Berlin
-User2,London
-User2,Madrid
-User2,Barcelona
-User3,Sydney
-User3,Tokyo
-User3,Paris
-User4,New York
-User4,Miami
-User4,Los Angeles
-John,Miami
-John,Los Angeles
+1,Paris
+1,London
+1,Tokyo
+2,Romania
+2,London
+2,Barcelona
+3,Miami
+3,Paris
+3,Beirut
+19,Paris

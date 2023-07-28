@@ -1,0 +1,15 @@
+<div>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  </div>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" [(ngModel)]="imageName" name="name" />
+  </div>
+  <div>
+    <label for="location">Location:</label>
+    <input type="text" id="location" [(ngModel)]="imageLocation" name="location" />
+  </div>
+  <div>
+    <button (click)="uploadImage()">Upload Image</button>
+  </div>
+  

@@ -1,0 +1,25 @@
+<div class="card">
+  <h1>User Profile</h1>
+  <div *ngIf="user">
+    <h2>{{ user.name }}</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>Visited Locations:</p>
+    <ul>
+      <li *ngFor="let location of user.visitedLocations">{{ location.name }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="images && images.length > 0">
+    <h2>Uploaded Images</h2>
+    <table class="image-table">
+      <tr>
+        <td *ngFor="let image of images">
+          <div class="image-container">
+            <img [src]="image.filePath" alt="{{ image.name }}" width="200" height="200">
+            <p>{{ image.name }}</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

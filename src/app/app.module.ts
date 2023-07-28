@@ -9,7 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { ProfileComponent } from './profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +19,15 @@ import { RegisterComponent } from './register/register.component';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    ImageUploadComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

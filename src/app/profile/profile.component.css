@@ -1,5 +1,11 @@
-.btn-primary {
-  margin-top: 10%;
+h1 {
+  color: #b9b9b9;
+  text-align: center;
+}
+
+* {
+  color: #b9b9b9;
+  text-align: left;
 }
 
 .card {
@@ -14,5 +20,8 @@
   border-radius: 8px;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
 }
-/*# sourceMappingURL=app.component.css.map */
+/*# sourceMappingURL=profile.component.css.map */
