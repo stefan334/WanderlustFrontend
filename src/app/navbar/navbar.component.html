@@ -193,8 +193,25 @@
         </li>
         <div *ngIf="cookieService.check('token')" >
           <!-- Pass the username as a parameter to the profile route -->
-          <li><a (click)="navigateToProfile()">Profile</a></li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" (click)="navigateToProfile()">Profile</button>
+          </li>
         </div>
+        <li class="nav-item">
+          <button type="button" class="btn btn-primary" (click)="openModal(searchModal)">Search</button>
+
+          <ng-template #searchModal>
+            <div class="modal-header">
+              <h4 class="modal-title">Search Users</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-user-search></app-user-search>
+            </div>
+          </ng-template>
+        </li>
        
         </ul>
         <ul class="navbar-nav d-flex flex-row">

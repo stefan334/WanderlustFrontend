@@ -1,0 +1,33 @@
+/* Styling for the search input */
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+}
+
+/* Styling for the search results */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Styling for the search results container */
+.search-results-container {
+  margin-top: 20px;
+}
+/*# sourceMappingURL=user-search.component.css.map */
