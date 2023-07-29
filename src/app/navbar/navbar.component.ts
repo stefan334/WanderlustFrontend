@@ -4,6 +4,7 @@ import { HttpClient , HttpHeaders} from '@angular/common/http'; // Import HttpCl
 import { CookieService } from 'ngx-cookie-service';
 import { QuizQuestion } from '../quiz/quiz-question.model';
 import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,10 @@ export class NavbarComponent {
   selectedAnswer: string = "";
   submitted = false;
   locations : string= "";
+  username:string="";
+  
   constructor(
+    private router: Router,
     private modalService: BsModalService,
     private http: HttpClient, // Inject HttpClient
     public cookieService: CookieService
@@ -96,7 +100,11 @@ export class NavbarComponent {
       }
     );
   }
-  
+  navigateToProfile() {
+    // Navigate to the profile route with the given username
+    
+    this.router.navigate(['/profile', this.cookieService.get("username")]);
+  }
 
   static getUserEmailFromToken(token: any) {
     try {

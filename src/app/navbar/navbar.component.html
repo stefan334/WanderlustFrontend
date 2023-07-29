@@ -191,9 +191,10 @@
           </ng-template>
         </div>
         </li>
-
-        <li><a routerLink="/profile">Profile</a></li>
-        
+        <div *ngIf="cookieService.check('token')" >
+          <!-- Pass the username as a parameter to the profile route -->
+          <li><a (click)="navigateToProfile()">Profile</a></li>
+        </div>
        
         </ul>
         <ul class="navbar-nav d-flex flex-row">

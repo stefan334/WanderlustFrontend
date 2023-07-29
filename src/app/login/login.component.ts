@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         const expires = new Date();
         expires.setHours(expires.getHours() + 1); // Set the expiration to 1 hour from now
         this.cookieService.set('token', response.access_token, expires);
+        this.cookieService.set('username', response.username);
         this.router.navigate(['/']);
 
         
