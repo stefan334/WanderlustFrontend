@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
   username: string = "";
   user: any;
   images: any[] = [];
+  locations: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +27,7 @@ export class ProfileComponent implements OnInit {
     // Fetch user data from the backend
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const username = this.username; // Use this.username as the email since you want to fetch the profile based on the username
+    const username = this.username; 
     this.http.get('http://localhost:8080/users/' + username).subscribe((userData: any) => {
       console.log(userData)
       this.user = userData;
@@ -37,6 +38,13 @@ export class ProfileComponent implements OnInit {
       console.log("Response:")
       console.log(images)
       this.images = images as any[];
+    });
+
+
+    this.http.get<any[]>('http://localhost:8080/recommendation', { params: { username: this.username } })
+    .subscribe((locations) => {
+      this.locations = locations;
+      console.log(this.locations);
     });
   }
 }

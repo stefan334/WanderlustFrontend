@@ -17,8 +17,6 @@ for user_id, visited_locations in user_vectors:
         target_user_visited_locations = visited_locations
         break
 
-
-
 # Determine the maximum location ID
 max_location_id = max(max(visited_locations), max(location_id for (_, visited_locations) in user_vectors for location_id in visited_locations))
 
@@ -29,7 +27,6 @@ user_vectors_sparse = dok_matrix((40, max_location_id + 1), dtype=float)
 for i, (user_id, visited_locations) in enumerate(user_vectors):
     for location_id in visited_locations:
         user_vectors_sparse[user_id, location_id] = 1.0
-    
 
 # Load the pre-built Annoy index
 annoy_index = AnnoyIndex(user_vectors_sparse.shape[1], 'angular')  # Assuming locations are represented as high-dimensional vectors
@@ -39,10 +36,10 @@ for i, (user_id, visited_locations) in enumerate(user_vectors):
     annoy_index.add_item(user_id, user_vectors_sparse[i, :].toarray().flatten())
 
 # Build the Annoy index
-annoy_index.build(n_trees=10)
+annoy_index.build(n_trees=50)
 
 # Example usage: Find the nearest neighbors to the target user
-nearest_neighbors = annoy_index.get_nns_by_item(target_user_id, n=2)  # Adjust the value of n as per your requirement
+nearest_neighbors = annoy_index.get_nns_by_item(target_user_id, n=200)  # Increase the number of neighbors to consider
 
 # Retrieve the recommended locations from the nearest neighbors
 recommended_locations = []
@@ -51,12 +48,21 @@ for neighbor_user_id in nearest_neighbors:
     cursor.execute("SELECT location_id FROM user_visited_locations l WHERE user_id = %s", (neighbor_user_id,))
     neighbor_visited_locations = cursor.fetchall()
 
-    recommended_locations.extend([location_id for (location_id,) in neighbor_visited_locations])
+    # Add unique locations from the neighbor to the recommendations
+    recommended_locations.extend(
+        [location_id for (location_id,) in neighbor_visited_locations if location_id not in recommended_locations]
+    )
+
+    # Stop when we have at least 5 recommended locations
+    if len(recommended_locations) >= 5:
+        break
 
 # Remove visited locations from the recommendations
 recommended_locations = list(set(recommended_locations) - set(target_user_visited_locations))
-print(recommended_locations)
 
+print(recommended_locations)
+print("test")
+print(nearest_neighbors)
 # Close the database connection
 cursor.close()
 connection.close()

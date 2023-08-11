@@ -7,6 +7,10 @@
     <ul>
       <li *ngFor="let location of user.visitedLocations">{{ location.name }}</li>
     </ul>
+    <p>Recommended Locations:</p>
+    <ul>
+      <li *ngFor="let location of locations">{{ location.name }}</li>
+    </ul>
   </div>
 
   <div *ngIf="images && images.length > 0">

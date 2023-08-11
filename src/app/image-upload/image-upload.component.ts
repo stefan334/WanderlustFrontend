@@ -33,8 +33,7 @@ export class ImageUploadComponent implements AfterViewInit{
       const placesService = new google.maps.places.PlacesService(autocompleteInput);
   
       const options = {
-        types: ['geocode'],
-        componentRestrictions: { country: 'jp' } // Restrict results to Japan
+        types: ['geocode']
       };
   
       // Add a listener to handle input changes and update predictions
@@ -107,7 +106,7 @@ export class ImageUploadComponent implements AfterViewInit{
     formData.append('name', this.imageName);
     formData.append('latitude', this.latitude?.toString() || '');
     formData.append('longitude', this.longitude?.toString() || '');
-
+    formData.append('location', this.imageLocation);
     headers.append('Accept', 'application/json');
 
     this.http.post<boolean>('http://localhost:8080/uploadImage', formData, { headers }).subscribe(

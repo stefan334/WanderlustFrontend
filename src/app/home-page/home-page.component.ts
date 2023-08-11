@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import 'leaflet.markercluster';
+
+
 
 import 'leaflet.markercluster';
 
@@ -25,17 +28,17 @@ export class HomePageComponent implements OnInit {
       L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
         maxZoom: 20
       }).addTo(map);
-    
+      var markers = L.markerClusterGroup();
       this.http.get('http://localhost:8080/getAllImages').subscribe((images) => {
         console.log("Response:")
         console.log(images)
         this.images = images as any[];
-    
+        
         // Create markers for each image
         for(const image of this.images){
           if(image.latitude != null && image.longitude != null){
           const markerLatLng = L.latLng(image.latitude, image.longitude);
-          const marker = L.marker(markerLatLng).addTo(map);
+          const marker = L.marker(markerLatLng);
           marker.bindPopup(`<div><img id="popup-image" src="${image.filePath}" alt="${image.name}" width="100"></div>`).openPopup();
         
           // Event listener to handle the popupopen event
@@ -57,10 +60,12 @@ export class HomePageComponent implements OnInit {
             // Remove the click event listener to prevent multiple event bindings
             imageElement.removeEventListener('click', () => {});
           });
+          
+          markers.addLayer(marker);
         }
       }
       });
-    
+      map.addLayer(markers);
       
       // Event listener to handle the map click event to close the modal
       map.on('click', () => {

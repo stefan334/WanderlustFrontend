@@ -6,7 +6,7 @@
   <ul>
     <li *ngFor="let user of searchResults">
       <!-- Display user information or provide a link to their profile -->
-      <a [routerLink]="['/profile', user.username]">{{ user.username }}</a>
+      <a href="javascript:void(0);" (click)="goToUserProfile(user.username)">{{ user.username }}</a>
     </li>
   </ul>
 </div>
