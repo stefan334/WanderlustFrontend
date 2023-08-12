@@ -1,0 +1,76 @@
+.card {
+  width: 80%;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: rgba(75, 72, 69, 0.8);
+  border-radius: 8px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2%;
+}
+
+.feed-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+}
+
+.post {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.post img {
+  max-width: 100%;
+  max-height: 200px;
+}
+
+.post-content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-left: 10px;
+}
+
+.post-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.post-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* Vertically align buttons and stats */
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+.post-details button {
+  margin-right: 10px;
+}
+
+.post-stats {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+/*# sourceMappingURL=user-feed.component.css.map */

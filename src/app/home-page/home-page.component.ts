@@ -40,7 +40,6 @@ export class HomePageComponent implements OnInit {
           const markerLatLng = L.latLng(image.latitude, image.longitude);
           const marker = L.marker(markerLatLng);
           marker.bindPopup(`<div><img id="popup-image" src="${image.filePath}" alt="${image.name}" width="100"></div>`).openPopup();
-        
           // Event listener to handle the popupopen event
           marker.on('popupopen', () => {
             // Get the image element from the popup

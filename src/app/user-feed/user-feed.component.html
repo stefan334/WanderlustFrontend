@@ -1,0 +1,30 @@
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+</head>
+
+<div class="card">
+  <div class="feed-container">
+    <div *ngFor="let post of posts" class="post">
+      <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}">
+      <div class="post-content">
+        <div class="post-text">{{ post.caption }}</div>
+        <div class="post-user">
+          Uploaded by: {{ post.user.username }}
+        </div>
+        <div class="post-details">
+          <button class="btn btn-primary" (click)="likePost(post)">
+            <i class="bi bi-heart"></i> 
+          </button>
+          <button class="btn btn-secondary" (click)="addComment(post)">
+            <i class="bi bi-chat-dots"></i>
+          </button>
+        </div>
+        <div class="post-stats">
+          <span class="likes"><i class="bi bi-heart"></i> {{ post.likes.length }} Likes</span>
+          <span class="comments"><i class="bi bi-chat-dots"></i> {{ post.comments.length }} Comments</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

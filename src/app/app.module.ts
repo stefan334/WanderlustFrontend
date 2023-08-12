@@ -14,6 +14,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { SearchModalComponent } from './search-modal/search-modal.component';
+import { UserFeedComponent } from './user-feed/user-feed.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { SearchModalComponent } from './search-modal/search-modal.component';
     ProfileComponent,
     UserSearchComponent,
     SearchModalComponent,
+    UserFeedComponent,
   ],
   imports: [
     BrowserModule,

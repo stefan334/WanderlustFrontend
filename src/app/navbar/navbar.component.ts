@@ -106,6 +106,10 @@ export class NavbarComponent {
     this.router.navigate(['/profile', this.cookieService.get("username")]);
   }
 
+  navigateToUserFeed(): void {
+    this.router.navigate(['/user-feed']); // Navigate to the UserFeedComponent route
+  }
+
   static getUserEmailFromToken(token: any) {
     try {
       // Decode the token
