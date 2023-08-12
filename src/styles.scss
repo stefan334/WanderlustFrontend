@@ -12,3 +12,18 @@ body{
 * {
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
+/* Global modal styling */
+.modal-content, .modal-body {
+    background-color: rgba(26, 26, 26, 0.9); /* Adjust the opacity to your preference */
+    color: #f0f0f0; /* Text color for modal content */
+    /* Add any other styles you want for the modal content */
+  }
+  
+  
+  /* Style the close button */
+  .modal-header .close {
+    background-color: rgba(87, 86, 86, 0.7); /* Adjust the opacity to your preference */
+
+    color: rgb(255, 255, 255); /* Close button color */
+  }
+  
