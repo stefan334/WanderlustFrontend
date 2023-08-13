@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'; // Import Router
+import { NavigationService } from './navigation-service';
+
 @Component({
   selector: 'app-user-search',
   templateUrl: './user-search.component.html',
   styleUrls: ['./user-search.component.scss']
 })
 export class UserSearchComponent {
-  searchUsername: string = "" ;
+  searchUsername: string = "";
   searchResults: any[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private navigationService: NavigationService) {}
 
   searchUsers() {
     this.http.get<any[]>('http://localhost:8080/users/search', { params: { username: this.searchUsername } })
@@ -25,6 +26,6 @@ export class UserSearchComponent {
   }
 
   goToUserProfile(username: string) {
-    this.router.navigate(['/profile', username]); // Navigate to the profile page
+    this.navigationService.navigateToProfile(username);
   }
 }

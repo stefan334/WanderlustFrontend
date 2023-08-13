@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { QuizQuestion } from '../quiz/quiz-question.model';
 import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { NavigationService } from '../user-search/navigation-service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,6 +25,7 @@ export class NavbarComponent {
   
   constructor(
     private router: Router,
+    private navigationService: NavigationService,
     private modalService: BsModalService,
     private http: HttpClient, // Inject HttpClient
     public cookieService: CookieService
@@ -103,7 +105,7 @@ export class NavbarComponent {
   navigateToProfile() {
     // Navigate to the profile route with the given username
     
-    this.router.navigate(['/profile', this.cookieService.get("username")]);
+    this.navigationService.navigateToProfile(this.cookieService.get("username"));
   }
 
   navigateToUserFeed(): void {
@@ -117,7 +119,6 @@ export class NavbarComponent {
   
       // Access the email from the decoded payload
       const userEmail: string = decodedToken.sub;
-      console.log(decodedToken);
       return userEmail;
     } catch (error) {
       // Handle any errors during decoding

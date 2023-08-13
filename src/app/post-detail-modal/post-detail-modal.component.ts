@@ -18,7 +18,10 @@ export class PostDetailModalComponent {
     public bsModalRef: BsModalRef,
     private http: HttpClient,
     public cookieService: CookieService
-  ) {}
+  ) {
+    console.log("post is in modal:")
+    console.log(this.post);
+  }
 
   closeModal(): void {
     this.bsModalRef.hide();

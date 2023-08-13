@@ -1,20 +1,24 @@
 .card {
-    width: 80%;
-    height: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(75, 72, 69, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 2%;
-  }
+  top:15%;
+  left:10%;
+  position:fixed;
+  width: 80%;
+  height: 80vh; /* Adjust the height of the card */
+  background-color: rgba(75, 72, 69, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2%;
+  overflow: auto; /* Enable scrolling within the card container */
+  margin: auto; /* Center the card horizontally */
+  display: flex; /* Use flexbox for centering vertically */
+  flex-direction: column; /* Arrange the content in a column */
+}
   
   .feed-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    flex-direction: column;
   }
   
   .post {
@@ -22,16 +26,22 @@
     padding: 10px;
     border-radius: 5px;
     display: flex;
+    max-width: 100%;
+    height: auto; /* Auto height to fit the content */
+    margin-bottom: 20px; /* Add some spacing between posts */
+  }
+  .post img {
+    width: 70%; /* Set the desired width */
+    height: 100%; /* Set the desired height */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+    margin-bottom: 10px;
   }
   
-  .post img {
-    max-width: 100%;
-    max-height: 200px;
-  }
+  
   
   .post-content {
     flex: 1;
-    margin-left: 10px;
+    margin-left: 0;
   }
   
   .post-text {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -14,9 +14,12 @@ export class UserFeedComponent implements OnInit {
   posts: any[] = [];
   userEmail: string = "";
   token: any;
-
+  currentPage: number = 1;
+  pageSize: number = 2;
+  isFetchingPosts = false; 
   constructor(private http: HttpClient, public cookieService: CookieService,
-    private modalService: BsModalService) {}
+    private modalService: BsModalService,
+    private cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getLatestPosts();
@@ -27,7 +30,7 @@ export class UserFeedComponent implements OnInit {
   getLatestPosts(): void {
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get<any[]>('http://localhost:8080/getLatestPosts', { headers }).subscribe(posts => {
+    this.http.get<any[]>(`http://localhost:8080/getLatestPosts?page=${this.currentPage}&pageSize=${this.pageSize}`, { headers }).subscribe(posts => {
       this.posts = posts;
     });
   }
@@ -60,4 +63,42 @@ export class UserFeedComponent implements OnInit {
       post.comments.length++;
     });
   }
+
+  onCardScroll(event: any): void {
+    const cardElement = event.target;
+    const threshold = 50;
+
+    if (
+      !this.isFetchingPosts && // Check if posts are not currently being fetched
+      cardElement.scrollHeight - cardElement.scrollTop <= cardElement.clientHeight + threshold
+    ) {
+      // Set the flag to indicate that posts are being fetched
+      this.isFetchingPosts = true;
+
+      // Load more posts
+      this.currentPage++;
+      this.getMorePosts();
+    }
+  }
+  
+  getMorePosts(): void {
+    const token = this.cookieService.get('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `http://localhost:8080/getLatestPosts?page=${this.currentPage}&pageSize=${this.pageSize}`;
+
+    this.http.get<any[]>(url, { headers }).subscribe(posts => {
+      this.posts = this.posts.concat(posts);
+      console.log(posts)
+      // Reset the flag after posts are fetched
+      if(posts.length == 0)
+      {
+        this.isFetchingPosts = false;
+      }
+      // Manually trigger change detection
+      this.cdRef.detectChanges();
+    });
+  }
+  
+  
+  
 }

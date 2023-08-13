@@ -1,50 +1,69 @@
 .card {
-    width: 80%;
-    height: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(75, 72, 69, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 2%;
-  }
-  
-  h1 {
-    color: #b9b9b9;
-    text-align: center;
-  }
-  
-  h2, p {
-    color: #b9b9b9;
-    text-align: left;
-  }
-  
-  ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .image-table {
-    width: 100%;
-  }
-  
-  .image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-  }
-  
-  img {
-    width: 200px;
-    height: 200px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  p {
-    margin-top: 5px;
-  }
-  
+  top:15%;
+  left:10%;
+  position:fixed;
+  width: 80%;
+  height: 80vh; /* Adjust the height of the card */
+  background-color: rgba(75, 72, 69, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2%;
+  overflow-y: auto;
+  overflow-x: hidden; /* Enable scrolling within the card container */
+  margin: auto; /* Center the card horizontally */
+  display: flex; /* Use flexbox for centering vertically */
+  flex-direction: column; /* Arrange the content in a column */
+  margin: auto;
+  color:rgb(177, 177, 177);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow-y:auto;
+}
+
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.followers-following {
+  display: flex;
+  align-items: center;
+}
+
+.followers-following p {
+  margin-right: 20px;
+}
+
+.profile-locations {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.uploaded-images {
+  padding: 20px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.image-card img {
+  width:400px;
+  height:200px;
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

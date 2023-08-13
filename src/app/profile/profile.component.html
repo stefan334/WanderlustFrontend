@@ -1,29 +1,36 @@
 <div class="card">
-  <h1>User Profile</h1>
-  <div *ngIf="user">
-    <h2>{{ user.name }}</h2>
-    <p>Email: {{ user.email }}</p>
-    <p>Visited Locations:</p>
-    <ul>
-      <li *ngFor="let location of user.visitedLocations">{{ location.name }}</li>
-    </ul>
-    <p>Recommended Locations:</p>
-    <ul>
-      <li *ngFor="let location of locations">{{ location.name }}</li>
-    </ul>
-  </div>
+  <div class="profile-container">
+    <div *ngIf="user" class="profile-header">
 
-  <div *ngIf="images && images.length > 0">
-    <h2>Uploaded Images</h2>
-    <table class="image-table">
-      <tr>
-        <td *ngFor="let image of images">
-          <div class="image-container">
-            <img [src]="image.filePath" alt="{{ image.name }}" width="200" height="200">
-            <p>{{ image.name }}</p>
-          </div>
-        </td>
-      </tr>
-    </table>
+      <div class="profile-info">
+        <h2>{{ user.name }}</h2>
+        <button *ngIf="!isCurrentUserProfile() && !isFollowingUser()" (click)="followUser()" class="btn btn-primary">Follow</button>
+        <button *ngIf="!isCurrentUserProfile() && isFollowingUser()" (click)="unfollowUser()" class="btn btn-danger">Unfollow</button>
+        <div class="followers-following">
+          <p><strong>{{ followers.length }}</strong> Followers</p>
+          <p><strong>{{ following.length }}</strong> Following</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="profile-locations">
+      <p>Visited Locations:</p>
+      <ul>
+        <li *ngFor="let location of user.visitedLocations">{{ location.name }}</li>
+      </ul>
+      <p>Recommended Locations:</p>
+      <ul>
+        <li *ngFor="let location of locations">{{ location.name }}</li>
+      </ul>
+    </div>
+  
+    <div class="uploaded-images">
+      <h2>Uploaded Images</h2>
+      <div class="image-grid">
+        <div class="image-card" *ngFor="let image of images" (click)="openImageModal(image)">
+          <img [src]="image.filePath" alt="{{ image.name }}">
+        </div>
+      </div>
+    </div>
   </div>
 </div>

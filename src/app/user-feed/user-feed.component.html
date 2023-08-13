@@ -2,10 +2,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 </head>
-
-<div class="card">
+<div class="card" (scroll)="onCardScroll($event)">
   <div class="feed-container">
-    <div *ngFor="let post of posts" class="post">
+    <div *ngFor="let post of posts; let last = last" class="post">
       <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}">
       <div class="post-content">
         <div class="post-text">{{ post.caption }}</div>
@@ -14,9 +13,9 @@
         </div>
         <div class="post-details">
           <button class="btn btn-primary" (click)="likePost(post)">
-            <i class="bi bi-heart"></i> 
+            <i class="bi bi-heart"></i>
           </button>
-          <button class="btn btn-secondary"  (click)="openPostDetailModal(post, token, userEmail)">
+          <button class="btn btn-secondary" (click)="openPostDetailModal(post, token, userEmail)">
             <i class="bi bi-chat-dots"></i>
           </button>
         </div>
