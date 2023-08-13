@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { NavigationService } from '../user-search/navigation-service';
 
 @Component({
   selector: 'app-post-detail-modal',
@@ -17,7 +18,8 @@ export class PostDetailModalComponent {
   constructor(
     public bsModalRef: BsModalRef,
     private http: HttpClient,
-    public cookieService: CookieService
+    public cookieService: CookieService,
+    private navigationService: NavigationService
   ) {
     console.log("post is in modal:")
     console.log(this.post);
@@ -43,4 +45,9 @@ export class PostDetailModalComponent {
     
     }
   }
+
+  navigateToUserProfile(username: string): void {
+    this.navigationService.navigateToProfile(username);
+  }
+  
 }

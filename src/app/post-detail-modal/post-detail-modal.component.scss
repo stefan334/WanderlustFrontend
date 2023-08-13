@@ -17,8 +17,30 @@
     color: #ececec; /* Adjust text color for comments */
   }
   
+/* Add hover and cursor styles to the clickable username */
+.comment-header strong {
+  color: #89b1dd; /* Change the text color to a blue shade on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  text-decoration: underline; /* Add underline on hover */
+  transition: color 0.3s, text-decoration 0.3s; /* Add smooth transition animation */
+}
 
-  
+.comment-header strong:hover {
+  color: #2c4c6e; /* Darken the text color further on hover */
+  text-decoration: none; /* Remove underline on hover */
+}
+
+.at-username {
+  color: #6c757d; /* Set the color for the @username */
+  margin-left: 5px; /* Add a small space between the name and @username */
+}
+
+.at-username:hover {
+  color: #495057; /* Darken the color on hover */
+  text-decoration: underline; /* Add underline on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
 
   /* Additional styling as needed */
   /* ... Previous styles ... */

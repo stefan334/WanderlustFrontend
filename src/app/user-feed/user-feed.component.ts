@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -15,8 +15,10 @@ export class UserFeedComponent implements OnInit {
   userEmail: string = "";
   token: any;
   currentPage: number = 1;
-  pageSize: number = 2;
+  pageSize: number = 10;
   isFetchingPosts = false; 
+  showFollowingPosts: boolean = false; 
+
   constructor(private http: HttpClient, public cookieService: CookieService,
     private modalService: BsModalService,
     private cdRef: ChangeDetectorRef) {}
@@ -30,10 +32,19 @@ export class UserFeedComponent implements OnInit {
   getLatestPosts(): void {
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get<any[]>(`http://localhost:8080/getLatestPosts?page=${this.currentPage}&pageSize=${this.pageSize}`, { headers }).subscribe(posts => {
+    const endpoint = this.showFollowingPosts ? '/getFollowingPosts' : '/getLatestPosts';
+  
+    // Pass the currentPage and pageSize as query parameters
+    const params = new HttpParams()
+      .set('page', this.currentPage.toString())
+      .set('pageSize', this.pageSize.toString());
+  
+    this.http.get<any[]>(`http://localhost:8080${endpoint}?userEmail=${this.userEmail}`, { headers, params }).subscribe(posts => {
       this.posts = posts;
     });
   }
+  
+  
 
   likePost(post: any): void {
 
@@ -84,19 +95,32 @@ export class UserFeedComponent implements OnInit {
   getMorePosts(): void {
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const url = `http://localhost:8080/getLatestPosts?page=${this.currentPage}&pageSize=${this.pageSize}`;
-
-    this.http.get<any[]>(url, { headers }).subscribe(posts => {
+    const endpoint = this.showFollowingPosts ? '/getFollowingPosts' : '/getLatestPosts';
+  
+    // Pass the currentPage and pageSize as query parameters
+    const params = new HttpParams()
+      .set('page', this.currentPage.toString())
+      .set('pageSize', this.pageSize.toString());
+  
+    const url = `http://localhost:8080${endpoint}?userEmail=${this.userEmail}`;
+    
+    this.http.get<any[]>(url, { headers, params }).subscribe(posts => {
       this.posts = this.posts.concat(posts);
-      console.log(posts)
+      
       // Reset the flag after posts are fetched
-      if(posts.length == 0)
-      {
+      if (posts.length === 0) {
         this.isFetchingPosts = false;
       }
+      
       // Manually trigger change detection
       this.cdRef.detectChanges();
     });
+  }
+  
+  toggleView(): void {
+    this.showFollowingPosts = !this.showFollowingPosts;
+    this.currentPage = 1; // Reset currentPage to 1
+    this.getLatestPosts(); // Fetch posts based on the new view
   }
   
   

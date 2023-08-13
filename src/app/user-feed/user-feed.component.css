@@ -100,4 +100,32 @@
   color: #777;
   margin-top: 5px;
 }
+
+.toggle-view {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.toggle-label {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px 10px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.toggle-label.active {
+  font-weight: bold;
+  color: #dfdede;
+}
+
+.toggle-label.inactive {
+  color: #929292;
+}
+
+/* Additional styling for hover effect */
+.toggle-label:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
 /*# sourceMappingURL=user-feed.component.css.map */

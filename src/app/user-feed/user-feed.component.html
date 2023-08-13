@@ -4,6 +4,24 @@
 </head>
 <div class="card" (scroll)="onCardScroll($event)">
   <div class="feed-container">
+    <div class="toggle-view">
+      <span
+        class="toggle-label"
+        [ngClass]="{ 'active': !showFollowingPosts, 'inactive': showFollowingPosts }"
+        (click)="toggleView()"
+      >
+        Explore
+      </span>
+      <span
+        class="toggle-label"
+        [ngClass]="{ 'active': showFollowingPosts, 'inactive': !showFollowingPosts }"
+        (click)="toggleView()"
+      >
+        Following
+      </span>
+    </div>
+    
+    
     <div *ngFor="let post of posts; let last = last" class="post">
       <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}">
       <div class="post-content">

@@ -1,34 +1,40 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ post.image.name }}</h4>
-    <button type="button" class="close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="post-details">
+  <h4 class="modal-title">{{ post.image.name }}</h4>
+  <button type="button" class="close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="post-details">
       <div class="image-container">
-        <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}" class="post-image">
+          <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}" class="post-image">
       </div>
       <div class="post-user">
-        <h5>{{ post.user.name }}</h5>
-        <!-- Display other user information if needed -->
+          <h5>
+            
+              {{ post.user.name }} <strong (click)="navigateToUserProfile(post.user.username)">
+                <span class="at-username">@{{ post.user.username }}</span>
+            </strong>
+          </h5>
+          <!-- Display other user information if needed -->
       </div>
-    </div>
-    <div class="post-content">
-      <div class="comment-section">
-        <div class="comments">
-          <div *ngFor="let comment of post.comments" class="comment">
-            <div class="comment-header">
-              <strong>{{ comment.user.username }}</strong> <!-- Display the name of the user who posted the comment -->
-            </div>
-            <div class="comment-text">{{ comment.commentText }}</div>
-          </div>
-        </div>
-        <div class="comment-input">
-          <textarea class="form-control" [(ngModel)]="newComment" rows="3" placeholder="Write a comment..."></textarea>
-          <button class="btn btn-primary mt-2" (click)="publishComment()">Publish</button>
-        </div>
-      </div>
-    </div>
   </div>
-  
+  <div class="post-content">
+      <div class="comment-section">
+          <div class="comments">
+              <div *ngFor="let comment of post.comments" class="comment">
+                  <div class="comment-header">
+                      <strong (click)="navigateToUserProfile(comment.user.username)">
+                          {{ comment.user.username }} <span class="at-username">@{{ comment.user.username }}</span>
+                      </strong>
+                  </div>            
+                  <div class="comment-text">{{ comment.commentText }}</div>
+              </div>
+          </div>
+          <div class="comment-input">
+              <textarea class="form-control" [(ngModel)]="newComment" rows="3" placeholder="Write a comment..."></textarea>
+              <button class="btn btn-primary mt-2" (click)="publishComment()">Publish</button>
+          </div>
+      </div>
+  </div>
+</div>
