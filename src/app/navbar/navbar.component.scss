@@ -30,3 +30,88 @@
 .btn-login-register{
   margin-top:2rem;
 }
+
+.notification-icon {
+  margin-right: 5px;
+  height: 1em;
+  width: auto;
+}
+
+/* ... previous CSS rules ... */
+
+.notification-button {
+  background-color: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  /* ... previous styles ... */
+  transition: color 0.3s, transform 0.2s ease-in-out;
+}
+
+
+.nav-button {
+  background-color: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.nav-icon {
+  margin-right: 5px;
+  height: 1em;
+  width: auto;
+}
+
+.nav-button:hover {
+  color: #fff;
+}
+
+.notification-button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.notification-icon {
+  margin-right: 5px;
+  height: 1em;
+  width: auto;
+  fill: #ccc; /* Initial color */
+  transition: fill 0.3s; /* Smooth color transition */
+}
+
+.notification-button:hover .notification-icon {
+  fill: #fff; /* Color on hover */
+}
+
+.notification-button:hover {
+  color: #fff;
+}
+
+/* Add this CSS to your stylesheet */
+
+/* Style for the button when active (clicked) */
+.nav-button:active,
+.notification-button:active {
+  background-color: rgba(0, 0, 0, 0.1); /* Change this to your desired active background color */
+}
+
+/* Remove the default button outline when clicked */
+.nav-button:focus,
+.notification-button:focus {
+  outline: none;
+}
+
+

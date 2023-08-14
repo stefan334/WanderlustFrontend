@@ -53,7 +53,8 @@ export class UserFeedComponent implements OnInit {
   
     // Make a POST request to like the post
     this.http.post(`http://localhost:8080/like/${post.id}?email=${this.userEmail}`, {}, { headers }).subscribe((response: any) => {
-      // Update the likes count for the post      post.likes = response.likes; // Update likes count from the server response
+      console.log(response);
+      post.likes = response.likes;
     });
   }
   openPostDetailModal(post: any, token: any, userEmail: any): void {
@@ -123,6 +124,9 @@ export class UserFeedComponent implements OnInit {
     this.getLatestPosts(); // Fetch posts based on the new view
   }
   
-  
+  isPostLiked(post: any): boolean {
+    // Check if the post is liked by the user
+    return post.likes.some((like: any) => like.user.email === this.userEmail);
+  }
   
 }

@@ -1,6 +1,6 @@
 .map-container {
-  margin-top: 50px;
-  height: 90vh;
+  margin-top: 8.5vh;
+  height: 90.5vh;
   /* Set height to 66.67% of viewport height */
   width: 100%;
   /* Make sure container takes up full width of viewport */
@@ -19,7 +19,7 @@
 
 .image-overlay {
   position: absolute;
-  bottom: -100px;
+  bottom: 0px;
   right: -100px;
   z-index: 1000;
   /* make sure the overlay is on top of the map */
@@ -32,6 +32,7 @@
 
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* The Modal (background) */

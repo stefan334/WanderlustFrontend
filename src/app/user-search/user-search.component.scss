@@ -31,3 +31,13 @@ input[type="text"] {
     margin-top: 20px;
   }
   
+  .nav-button:active,
+.notification-button:active {
+    background-color: rgba(0, 0, 0, 0.1); /* Change this to your desired active background color */
+}
+
+/* Remove the default button outline when clicked */
+.nav-button:focus,
+.notification-button:focus {
+    outline: none;
+}

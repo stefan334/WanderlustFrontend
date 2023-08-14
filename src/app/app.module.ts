@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -16,6 +16,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { UserFeedComponent } from './user-feed/user-feed.component';
 import { PostDetailModalComponent } from './post-detail-modal/post-detail-modal.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,14 +31,19 @@ import { PostDetailModalComponent } from './post-detail-modal/post-detail-modal.
     SearchModalComponent,
     UserFeedComponent,
     PostDetailModalComponent,
+    NotificationsComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ReactiveFormsModule
   ],
+  exports: [ReactiveFormsModule],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -31,7 +31,7 @@
         </div>
         <div class="post-details">
           <button class="btn btn-primary" (click)="likePost(post)">
-            <i class="bi bi-heart"></i>
+            <i class="bi" [ngClass]="{'bi-heart': !isPostLiked(post), 'bi-heart-fill': isPostLiked(post)}"></i>
           </button>
           <button class="btn btn-secondary" (click)="openPostDetailModal(post, token, userEmail)">
             <i class="bi bi-chat-dots"></i>

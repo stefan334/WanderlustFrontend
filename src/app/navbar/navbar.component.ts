@@ -6,6 +6,7 @@ import { QuizQuestion } from '../quiz/quiz-question.model';
 import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { NavigationService } from '../user-search/navigation-service';
+import { NotificationToggleService } from '../services/notification-toggle.service';
 
 @Component({
   selector: 'app-navbar',
@@ -28,7 +29,8 @@ export class NavbarComponent {
     private navigationService: NavigationService,
     private modalService: BsModalService,
     private http: HttpClient, // Inject HttpClient
-    public cookieService: CookieService
+    public cookieService: CookieService,
+    private notificationToggleService: NotificationToggleService
   ) {
     this.modalRef = new BsModalRef();
     this.quizModalRef = new BsModalRef();
@@ -36,6 +38,11 @@ export class NavbarComponent {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  toggleNotifications() {
+    console.log("Toggle in navbar");
+    this.notificationToggleService.toggleNotifications();
   }
 
   openQuizModal(template: TemplateRef<any>) {
@@ -152,4 +159,16 @@ submitForm() {
     }
   );
 }
+
+// NavbarComponent class
+isAdminUser(): boolean {
+  const token = this.cookieService.get('token');
+  const decodedToken: any = jwt_decode(token);
+  const userRole: string = decodedToken.role; // Adjust the property name based on your token structure
+  return userRole === 'admin'; // Adjust the role value as needed
+}
+navigateToAdminPage(): void {
+  this.router.navigate(['/admin']); // Adjust the route path as needed
+}
+
 }

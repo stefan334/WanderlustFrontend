@@ -1,0 +1,30 @@
+
+<div class="card">
+<div class="admin-panel">
+    <h2>Admin Panel</h2>
+    <form [formGroup]="adminForm">
+      <div>
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" formControlName="userId">
+      </div>
+      <div formGroupName="updatedUser">
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name">
+        <!-- Add fields for other user properties (email, username, password) -->
+      </div>
+      <button (click)="updateUser()">Update User</button>
+  
+      <div>
+        <label for="postId">Post ID:</label>
+        <input type="number" id="postId" formControlName="postId">
+        <button (click)="deletePost()">Delete Post</button>
+      </div>
+  
+      <div>
+        <label for="imageId">Image ID:</label>
+        <input type="number" id="imageId" formControlName="imageId">
+        <button (click)="deleteImage()">Delete Image</button>
+      </div>
+    </form>
+  </div>
+</div>
