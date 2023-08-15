@@ -162,10 +162,20 @@ submitForm() {
 
 // NavbarComponent class
 isAdminUser(): boolean {
-  const token = this.cookieService.get('token');
-  const decodedToken: any = jwt_decode(token);
-  const userRole: string = decodedToken.role; // Adjust the property name based on your token structure
-  return userRole === 'admin'; // Adjust the role value as needed
+  // const token = this.cookieService.get('token');
+  // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  // var email = NavbarComponent.getUserEmailFromToken(token);
+  // this.http.get(`http://localhost:8080/users/${email}`, { headers }).subscribe(
+  //     (user: any) => {
+  //       console.log(user.role)
+  //       return "ADMIN" === user.role;
+  //     },
+  //     error => {
+  //       console.error('Error fetching user:', error);
+  //       // Handle error
+  //     }
+  //   );
+    return false;
 }
 navigateToAdminPage(): void {
   this.router.navigate(['/admin']); // Adjust the route path as needed

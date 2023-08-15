@@ -23,25 +23,30 @@
     
     
     <div *ngFor="let post of posts; let last = last" class="post">
-      <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}">
       <div class="post-content">
-        <div class="post-text">{{ post.caption }}</div>
-        <div class="post-user">
-          Uploaded by: {{ post.user.username }}
+        <div class="post-image-container">
+          <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}">
+        </div>
+        <div class="post-text">
+          <div class="post-header">
+            <a class="username" [routerLink]="'/profile/' + post.user.username">@{{ post.user.username }}</a>
+          </div>
+          
+        </div>
+        <div class="post-stats">
+         <p class = "post-name"> {{ post.image.name }} </p>
+          <span class="likes"><i class="bi bi-heart"></i> {{ post.likes.length }} Likes </span>
+          <span class="comments"><i class="bi bi-chat-dots"></i> {{ post.comments.length }} Comments </span>
         </div>
         <div class="post-details">
-          <button class="btn btn-primary" (click)="likePost(post)">
+          <button class="btn btn-primary btn-width" (click)="likePost(post)">
             <i class="bi" [ngClass]="{'bi-heart': !isPostLiked(post), 'bi-heart-fill': isPostLiked(post)}"></i>
           </button>
-          <button class="btn btn-secondary" (click)="openPostDetailModal(post, token, userEmail)">
+          <button class="btn btn-secondary btn-width" (click)="openPostDetailModal(post, token, userEmail)">
             <i class="bi bi-chat-dots"></i>
           </button>
         </div>
-        <div class="post-stats">
-          <span class="likes"><i class="bi bi-heart"></i> {{ post.likes.length }} Likes</span>
-          <span class="comments"><i class="bi bi-chat-dots"></i> {{ post.comments.length }} Comments</span>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>

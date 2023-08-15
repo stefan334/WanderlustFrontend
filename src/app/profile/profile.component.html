@@ -3,7 +3,10 @@
     <div *ngIf="user" class="profile-header">
 
       <div class="profile-info">
+        <div class = "user-info">
         <h2>{{ user.name }}</h2>
+        <p strong>@{{ user.username }}</p>
+      </div>
         <button *ngIf="!isCurrentUserProfile() && !isFollowingUser()" (click)="followUser()" class="btn btn-primary">Follow</button>
         <button *ngIf="!isCurrentUserProfile() && isFollowingUser()" (click)="unfollowUser()" class="btn btn-danger">Unfollow</button>
         <div class="followers-following">

@@ -21,51 +21,32 @@
     flex-direction: column;
   }
   
-  .post {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    max-width: 100%;
-    height: auto; /* Auto height to fit the content */
-    margin-bottom: 20px; /* Add some spacing between posts */
-  }
+
   .post img {
     width: 70%; /* Set the desired width */
     height: 100%; /* Set the desired height */
     object-fit: cover; /* Maintain aspect ratio and cover the entire container */
-    margin-bottom: 10px;
+    
   }
   
   
-  
-  .post-content {
-    flex: 1;
-    margin-left: 0;
-  }
+
   
   .post-text {
     font-size: 16px;
-    margin-bottom: 10px;
+  
   }
   
-  .post-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Vertically align buttons and stats */
-    font-size: 14px;
-    color: #777;
-    margin-top: 10px;
-  }
-  
-  .post-details button {
-    margin-right: 10px;
-  }
+
   
   .post-stats {
     font-size: 14px;
     color: #777;
     margin-top: 5px;
+
+    margin:auto;
+    padding-left:5vw;
+    padding-right:5vw;
   }
   .toggle-view {
     text-align: center;
@@ -93,4 +74,76 @@
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
   }
+  /* Your existing CSS styles */
+
+
+
+.post {
+  border: 1px solid #9696969f;
+  border-radius: 5px;
+  display: flex;
+  margin:auto;
+  max-width: 50%;
+  height: auto; /* Auto height to fit the content */ 
+  position: relative; /* Add positioning for the relative positioning */
+  background-color: #03030375;
+}
+
+.post-header {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Add background color */
+  color: #fff; /* Text color */
+  text-align: center;
+  padding: 5px;
+  position: absolute; /* Position above the image */
+  top: 0; /* Position at the top of the post */
+  left: 0;
+}
+
+.username {
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; /* Text color */
+}
+
+
+
+
+
+/* Your existing styles ... */
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align the content horizontally */
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+.post-image-container img {
+  width: 100%;
+  height: auto;
   
+}
+
+.post-text {
+  flex-grow: 1; /* Allow text to take up available space */
+}
+
+.post-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn-width{
+  width:10vw;
+}
+.post-name{
+  margin:auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}

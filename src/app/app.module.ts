@@ -18,6 +18,8 @@ import { UserFeedComponent } from './user-feed/user-feed.component';
 import { PostDetailModalComponent } from './post-detail-modal/post-detail-modal.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminStatisticsComponent } from './admin-statistics/admin-statistics.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     PostDetailModalComponent,
     NotificationsComponent,
     AdminPanelComponent,
+    AdminStatisticsComponent,
   ],
   imports: [
     BrowserModule,

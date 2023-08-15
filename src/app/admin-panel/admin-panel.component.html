@@ -2,7 +2,11 @@
 <div class="card">
 <div class="admin-panel">
     <h2>Admin Panel</h2>
-    <form [formGroup]="adminForm">
+    <ng-container *ngIf="isAdmin; else errorMessage">
+      <button routerLink="/admin-statistics">View Statistics</button><br><br>
+      <input type="text" id="username" [(ngModel)]="username" placeholder="Enter username">
+      <button (click)="getUserByUsername()">Get User</button>
+    <form [formGroup]="adminForm" *ngIf="userDataLoaded">
       <div>
         <label for="userId">User ID:</label>
         <input type="number" id="userId" formControlName="userId">
@@ -10,21 +14,48 @@
       <div formGroupName="updatedUser">
         <label for="name">Name:</label>
         <input type="text" id="name" formControlName="name">
-        <!-- Add fields for other user properties (email, username, password) -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username">
+        <label for="email">email:</label>
+        <input type="text" id="email" formControlName="email">
+        <label for="password">password:</label>
+        <input type="text" id="password" formControlName="password">
+        <!-- Add fields for other user properties (email, usernaame, password) -->
       </div>
       <button (click)="updateUser()">Update User</button>
+      <h3>Posts of this user: </h3>
+      <table *ngIf="posts.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Creation Date</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let post of posts">
+            <td>{{ post.id }}</td>
+            <td>{{ post.creationDate | date }}</td>
+            <td>
+              <img [src]="'http://localhost:8080/getImage/' + post.image.filePath" alt="{{ post.image.name }}" width="400" height="200">
+            </td>
+            <td>{{ post.image.name }}</td>
+            <td>
+              <button (click)="deletePost(post.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
   
-      <div>
-        <label for="postId">Post ID:</label>
-        <input type="number" id="postId" formControlName="postId">
-        <button (click)="deletePost()">Delete Post</button>
-      </div>
-  
-      <div>
-        <label for="imageId">Image ID:</label>
-        <input type="number" id="imageId" formControlName="imageId">
-        <button (click)="deleteImage()">Delete Image</button>
-      </div>
+     
     </form>
+    </ng-container>
+    <ng-template #errorMessage>
+      <!-- Error message for non-admin users -->
+      <p>You do not have permission to access this page.</p>
+    </ng-template>
   </div>
 </div>

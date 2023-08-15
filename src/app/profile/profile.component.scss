@@ -34,6 +34,14 @@
 .profile-info {
   display: flex;
   flex-direction: column;
+  margin:auto;
+}
+
+.user-info{
+  margin:auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .followers-following {
@@ -66,4 +74,5 @@
   max-width: 100%;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../services/notification-service';
 import { NotificationToggleService } from '../services/notification-toggle.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-notifications',
@@ -20,6 +21,9 @@ export class NotificationsComponent implements OnInit {
     // Subscribe to the toggle event
     this.notificationToggleService.getToggleObservable().subscribe(() => {
       this.toggleNotifications();
+    });
+    interval(5000).subscribe(() => {
+      this.fetchNotifications();
     });
   }
 

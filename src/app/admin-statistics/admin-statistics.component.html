@@ -1,0 +1,33 @@
+<div class="card">
+    <ng-container *ngIf="isAdmin; else errorMessage">
+      <div class="admin-statistics">
+        <h2>Admin Statistics</h2>
+  
+        <div class="statistic-row">
+          <div class="statistic">
+            <h3>Total Posts</h3>
+            <p>{{ totalPosts }}</p>
+          </div>
+          <div class="statistic">
+            <h3>Total Users</h3>
+            <p>{{ totalUsers }}</p>
+          </div>
+          <div class="statistic">
+            <h3>Average Likes Per Post</h3>
+            <p>{{ averageLikesPerPost }}</p>
+          </div>
+          <div class="statistic">
+            <h3>User with Most Posts</h3>
+            <p>@{{ userWithMostPosts.username }}</p>
+            <!-- Display other properties of the user as needed -->
+          </div>
+          <!-- Add more statistics sections as needed -->
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #errorMessage>
+      <!-- Error message for non-admin users -->
+      <p>You do not have permission to access this page.</p>
+    </ng-template>
+  </div>
+  

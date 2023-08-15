@@ -17,6 +17,7 @@ export class ImageUploadComponent implements AfterViewInit{
   latitude: number | null = null;
   longitude: number | null = null;
   imageLocation: string = '';
+  showSuccessMessage: boolean = false;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
 
   constructor(private http: HttpClient, public cookieService: CookieService) {}
@@ -112,8 +113,10 @@ export class ImageUploadComponent implements AfterViewInit{
     this.http.post<boolean>('http://localhost:8080/uploadImage', formData, { headers }).subscribe(
       (response) => {
         if (response) {
+          this.showSuccessMessage = true;
           console.log('Image uploaded successfully');
         } else {
+          this.showSuccessMessage = false;
           console.error('Failed to upload image');
         }
       },

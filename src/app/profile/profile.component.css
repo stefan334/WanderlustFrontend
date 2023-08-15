@@ -52,6 +52,21 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin: auto;
+}
+
+.user-info {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .followers-following {
@@ -91,5 +106,6 @@
   border-radius: 10px;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 /*# sourceMappingURL=profile.component.css.map */
