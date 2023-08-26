@@ -1,18 +1,15 @@
-/* Color of the links BEFORE scroll */
 .navbar-scroll .nav-link,
 .navbar-scroll .navbar-toggler-icon,
 .navbar-scroll .navbar-brand {
   color: #fff;
 }
 
-/* Color of the links AFTER scroll */
 .navbar-scrolled .nav-link,
 .navbar-scrolled .navbar-toggler-icon,
 .navbar-scrolled .navbar-brand {
   color: #fff;
 }
 
-/* Color of the navbar AFTER scroll */
 .navbar-scroll,
 .navbar-scrolled {
   background-color: #cbbcb1;
@@ -39,7 +36,6 @@
   width: auto;
 }
 
-/* ... previous CSS rules ... */
 .notification-button {
   background-color: transparent;
   border: none;
@@ -54,7 +50,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  /* ... previous styles ... */
   -webkit-transition: color 0.3s, -webkit-transform 0.2s ease-in-out;
   transition: color 0.3s, -webkit-transform 0.2s ease-in-out;
   transition: color 0.3s, transform 0.2s ease-in-out;
@@ -107,30 +102,23 @@
   height: 1em;
   width: auto;
   fill: #ccc;
-  /* Initial color */
   -webkit-transition: fill 0.3s;
   transition: fill 0.3s;
-  /* Smooth color transition */
 }
 
 .notification-button:hover .notification-icon {
   fill: #fff;
-  /* Color on hover */
 }
 
 .notification-button:hover {
   color: #fff;
 }
 
-/* Add this CSS to your stylesheet */
-/* Style for the button when active (clicked) */
 .nav-button:active,
 .notification-button:active {
   background-color: rgba(0, 0, 0, 0.1);
-  /* Change this to your desired active background color */
 }
 
-/* Remove the default button outline when clicked */
 .nav-button:focus,
 .notification-button:focus {
   outline: none;

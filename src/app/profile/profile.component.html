@@ -17,15 +17,20 @@
     </div>
   
     <div class="profile-locations">
-      <p>Visited Locations:</p>
-      <ul>
-        <li *ngFor="let location of user.visitedLocations">{{ location.name }}</li>
-      </ul>
-      <p>Recommended Locations:</p>
-      <ul>
-        <li *ngFor="let location of locations">{{ location.name }}</li>
-      </ul>
+      <div class="column">
+        <p>Visited Locations:</p>
+        <ul>
+          <li *ngFor="let location of user.visitedLocations">{{ location.name }}</li>
+        </ul>
+      </div>
+      <div class="column recommended-column">
+        <p>Recommended Locations:</p>
+        <ul>
+          <li *ngFor="let location of locations">{{ location.name }}</li>
+        </ul>
+      </div>
     </div>
+    
   
     <div class="uploaded-images">
       <h2>Uploaded Images</h2>

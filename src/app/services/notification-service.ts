@@ -18,10 +18,9 @@ export class NotificationService {
     return this.toggleSubject.asObservable();
   }
   getNotifications(): Observable<any[]> {
-    // Replace with the appropriate API endpoint to fetch notifications
     const username = this.cookieService.get("username")
-    const token = this.cookieService.get('token'); // Retrieve the authentication token from cookie
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Set the token in request headers
+    const token = this.cookieService.get('token'); 
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any[]>('http://localhost:8080/getNotifications/' + username + "/unread", {headers});
 
     

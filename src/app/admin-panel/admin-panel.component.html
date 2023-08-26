@@ -20,7 +20,6 @@
         <input type="text" id="email" formControlName="email">
         <label for="password">password:</label>
         <input type="text" id="password" formControlName="password">
-        <!-- Add fields for other user properties (email, usernaame, password) -->
       </div>
       <button (click)="updateUser()">Update User</button>
       <h3>Posts of this user: </h3>
@@ -54,7 +53,6 @@
     </form>
     </ng-container>
     <ng-template #errorMessage>
-      <!-- Error message for non-admin users -->
       <p>You do not have permission to access this page.</p>
     </ng-template>
   </div>

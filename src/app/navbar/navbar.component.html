@@ -8,103 +8,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
-         
-
-              <!-- <li>
-                <div *ngIf="cookieService.check('token')" >
-                <button type="button" class="btn btn-primary" (click)="openQuizModal(quizModal)">Take Quiz</button>
-              </div> -->
-                <!-- quiz-modal.component.html -->
-      <!-- quiz-modal.component.html -->
-      <!--<ng-template #quizModal>
-        <div class="modal-header">
-          <h4 class="modal-title">Quiz</h4>
-          <button type="button" class="close" aria-label="Close" (click)="quizModalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <ng-container *ngIf="!submitted && currentQuestionIndex >= 0 && currentQuestionIndex < quizQuestions.length">-->
-            <!-- Display the question -->
-            <!-- <div class="question">
-              <h5>Question {{ currentQuestionIndex + 1 }}</h5>
-              <p>{{ quizQuestions[currentQuestionIndex].questionText }}</p>
-            </div> -->
-            <!-- Display the answers -->
-            <!-- <div class="answers">
-              <div *ngFor="let answer of quizQuestions[currentQuestionIndex].answers">
-                <input type="radio" name="selectedAnswer" [(ngModel)]="selectedAnswer" [value]="answer">
-                <label>{{ answer }}</label>
-              </div>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="submitted"> -->
-            <!-- Display the thank you message and best locations -->
-            <!-- <div class="thank-you">
-              <h5>Thank you for taking our quiz!</h5>
-              <p>The best locations for you are:</p>
-              <ul>
-                <li>Location 1</li>
-                <li>Location 2</li>
-                <li>Location 3</li> -->
-                <!-- Add more locations as needed -->
-              <!--</ul>
-            </div>
-          </ng-container>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="goToPreviousQuestion()" [disabled]="currentQuestionIndex === 0">
-            Previous
-          </button>
-          <button type="button" class="btn btn-primary" (click)="goToNextQuestion()" [disabled]="currentQuestionIndex === quizQuestions.length - 1">
-            Next
-          </button>
-          <button type="button" class="btn btn-success" (click)="submitQuiz()" [disabled]="currentQuestionIndex !== quizQuestions.length - 1">
-            Submit
-          </button>
-        </div>
-      </ng-template>
-
-
-                
-                
-                
-              
-              </li> -->
-       
-        <!-- <li class="nav-item">
-          <div *ngIf="cookieService.check('token')" >
-          <button type="button" class="btn btn-primary" (click)="openModal(modalTemplate)">Add Visited Locations</button>
-          <ng-template #modalTemplate>
-            <div class="modal-header">
-              <h4 class="modal-title">Add Visited Locations</h4>
-              <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form (ngSubmit)="submitForm()">
-                <label>
-                  Locations (comma-separated):
-                  <input type="text" [(ngModel)]="locations" name="locations" required>
-                </label>
-                <br>
-                <button type="submit" class = "btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancel</button>
-              </form>
-            </div>
-          </ng-template>
-        </div>
-        </li> -->
         <div *ngIf="cookieService.check('token')" >
-          <!-- Pass the username as a parameter to the profile route -->
           <li class="nav-item">
             <button class="btn btn-primary nav-button" (click)="navigateToProfile()">Profile</button>
           </li>
-
-
-         
-
         </div>
         <div *ngIf="cookieService.check('token')" >
         <li class="nav-item">
@@ -180,7 +87,7 @@
       <button class="btn btn-primary nav-button" (click)="openModal(template)">Logout</button>
           <ng-template #template>
             <div class="modal-header">
-              <h4 class="modal-title">Login/Register</h4>
+              <h4 class="modal-title">Logout</h4>
               <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -190,7 +97,6 @@
               
                 <app-login></app-login>
                 <div class="text-center">
-                <button type="button" class="btn btn-primary btn-login-register" (click)="toggleLoginRegister()">New user? Register here.</button>
               </div>
               </div>
               <div *ngIf="!showLogin">
@@ -218,15 +124,9 @@
 </button>
   </div>
   
-        
         </li>
-<!-- NavbarComponent template -->
 <div *ngIf="cookieService.check('token')" >
-  <!-- ... other buttons ... -->
   
-  <li class="nav-item">
-    <button class="btn btn-primary nav-button" *ngIf="isAdminUser()" (click)="navigateToAdminPage()">Admin Panel</button>
-  </li>
 </div>
 
 

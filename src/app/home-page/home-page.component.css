@@ -1,16 +1,12 @@
 .map-container {
   margin-top: 8.5vh;
   height: 90.5vh;
-  /* Set height to 66.67% of viewport height */
   width: 100%;
-  /* Make sure container takes up full width of viewport */
   position: relative;
-  /* Set the position to relative for the child element */
 }
 
 #map {
   position: absolute;
-  /* Set the position to absolute to occupy the full height of the parent */
   top: 0;
   bottom: 0;
   left: 0;
@@ -22,7 +18,6 @@
   bottom: 0px;
   right: -100px;
   z-index: 1000;
-  /* make sure the overlay is on top of the map */
 }
 
 .image-overlay img {
@@ -35,7 +30,6 @@ body {
   overflow-y: hidden;
 }
 
-/* The Modal (background) */
 .modal {
   display: none;
   position: fixed;
@@ -49,7 +43,6 @@ body {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Modal Content (image) */
 #modalImage {
   display: block;
   margin: auto;
@@ -57,7 +50,6 @@ body {
   max-height: 90%;
 }
 
-/* Close Button */
 .close {
   position: absolute;
   top: 15px;

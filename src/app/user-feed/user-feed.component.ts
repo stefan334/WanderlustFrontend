@@ -33,8 +33,6 @@ export class UserFeedComponent implements OnInit {
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const endpoint = this.showFollowingPosts ? '/getFollowingPosts' : '/getLatestPosts';
-  
-    // Pass the currentPage and pageSize as query parameters
     const params = new HttpParams()
       .set('page', this.currentPage.toString())
       .set('pageSize', this.pageSize.toString());
@@ -49,11 +47,7 @@ export class UserFeedComponent implements OnInit {
   likePost(post: any): void {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-
-  
-    // Make a POST request to like the post
     this.http.post(`http://localhost:8080/like/${post.id}?email=${this.userEmail}`, {}, { headers }).subscribe((response: any) => {
-      console.log(response);
       post.likes = response.likes;
     });
   }
@@ -69,9 +63,7 @@ export class UserFeedComponent implements OnInit {
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-    // Make a POST request to add a comment to the post
     this.http.post(`http://localhost:8080/comment/${post.id}`, { text: 'Your comment here' }, { headers }).subscribe(response => {
-      // Update the comments count for the post
       post.comments.length++;
     });
   }
@@ -81,13 +73,10 @@ export class UserFeedComponent implements OnInit {
     const threshold = 50;
 
     if (
-      !this.isFetchingPosts && // Check if posts are not currently being fetched
+      !this.isFetchingPosts &&
       cardElement.scrollHeight - cardElement.scrollTop <= cardElement.clientHeight + threshold
     ) {
-      // Set the flag to indicate that posts are being fetched
       this.isFetchingPosts = true;
-
-      // Load more posts
       this.currentPage++;
       this.getMorePosts();
     }
@@ -98,7 +87,6 @@ export class UserFeedComponent implements OnInit {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const endpoint = this.showFollowingPosts ? '/getFollowingPosts' : '/getLatestPosts';
   
-    // Pass the currentPage and pageSize as query parameters
     const params = new HttpParams()
       .set('page', this.currentPage.toString())
       .set('pageSize', this.pageSize.toString());
@@ -108,24 +96,21 @@ export class UserFeedComponent implements OnInit {
     this.http.get<any[]>(url, { headers, params }).subscribe(posts => {
       this.posts = this.posts.concat(posts);
       
-      // Reset the flag after posts are fetched
       if (posts.length === 0) {
         this.isFetchingPosts = false;
       }
       
-      // Manually trigger change detection
       this.cdRef.detectChanges();
     });
   }
   
   toggleView(): void {
     this.showFollowingPosts = !this.showFollowingPosts;
-    this.currentPage = 1; // Reset currentPage to 1
-    this.getLatestPosts(); // Fetch posts based on the new view
+    this.currentPage = 1;
+    this.getLatestPosts(); 
   }
   
   isPostLiked(post: any): boolean {
-    // Check if the post is liked by the user
     return post.likes.some((like: any) => like.user.email === this.userEmail);
   }
   

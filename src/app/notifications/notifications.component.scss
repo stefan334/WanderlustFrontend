@@ -1,7 +1,7 @@
 .notifications-container {
   position: fixed;
   top: 0;
-  right: -300px; /* Initially hidden outside the screen */
+  right: -300px;
   width: 300px;
   height: 100%;
   background-color: rgba(59, 59, 59, 0.966);
@@ -9,12 +9,12 @@
   transition: right 0.3s ease-in-out;
   z-index: 10000;
   padding: 15px;
-  overflow-y: auto; /* Add scroll functionality if notifications overflow */
+  overflow-y: auto; 
   color:whitesmoke;
 }
 
 .show {
-  right: 0; /* Show the notifications container */
+  right: 0;
 }
 
 .notifications-header {
@@ -42,7 +42,7 @@
   font-weight: bold;
 }
 
-/* Close notifications when clicking outside */
+
 .notifications-backdrop {
   position: fixed;
   top: 0;

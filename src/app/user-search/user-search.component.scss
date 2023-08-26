@@ -1,4 +1,4 @@
-/* Styling for the search input */
+
 input[type="text"] {
     padding: 10px;
     font-size: 16px;
@@ -6,8 +6,7 @@ input[type="text"] {
     border-radius: 5px;
     width: 300px;
   }
-  
-  /* Styling for the search results */
+
   ul {
     list-style-type: none;
     padding: 0;
@@ -25,18 +24,16 @@ input[type="text"] {
   a:hover {
     text-decoration: underline;
   }
-  
-  /* Styling for the search results container */
+
   .search-results-container {
     margin-top: 20px;
   }
   
   .nav-button:active,
 .notification-button:active {
-    background-color: rgba(0, 0, 0, 0.1); /* Change this to your desired active background color */
+    background-color: rgba(0, 0, 0, 0.1); 
 }
 
-/* Remove the default button outline when clicked */
 .nav-button:focus,
 .notification-button:focus {
     outline: none;

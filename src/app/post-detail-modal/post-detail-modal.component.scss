@@ -8,42 +8,41 @@
   .post-user {
     margin-top: 10px;
     font-size: 14px;
-    color: #ececec; /* Adjust text color for user details */
+    color: #ececec;
   }
 
   .comment {
     font-size: 14px;
     margin-bottom: 5px;
-    color: #ececec; /* Adjust text color for comments */
+    color: #ececec; 
   }
   
-/* Add hover and cursor styles to the clickable username */
+
 .comment-header strong {
-  color: #89b1dd; /* Change the text color to a blue shade on hover */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  text-decoration: underline; /* Add underline on hover */
-  transition: color 0.3s, text-decoration 0.3s; /* Add smooth transition animation */
+  color: #89b1dd; 
+  cursor: pointer; 
+  text-decoration: underline; 
+  transition: color 0.3s, text-decoration 0.3s;
 }
 
 .comment-header strong:hover {
-  color: #2c4c6e; /* Darken the text color further on hover */
-  text-decoration: none; /* Remove underline on hover */
+  color: #2c4c6e; 
+  text-decoration: none; 
 }
 
 .at-username {
-  color: #6c757d; /* Set the color for the @username */
-  margin-left: 5px; /* Add a small space between the name and @username */
+  color: #6c757d; 
+  margin-left: 5px; 
 }
 
 .at-username:hover {
-  color: #495057; /* Darken the color on hover */
-  text-decoration: underline; /* Add underline on hover */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  color: #495057; 
+  text-decoration: underline;
+  cursor: pointer; 
 }
 
 
-  /* Additional styling as needed */
-  /* ... Previous styles ... */
+
 
 .image-container {
     flex: 1;
@@ -56,7 +55,7 @@
   }
   
   .comments {
-    background-color: rgba(0, 0, 0, 0.15); /* Slightly darker background color for comments section */
+    background-color: rgba(0, 0, 0, 0.15); 
     padding: 10px;
     border-radius: 5px;
     flex: 1;
@@ -70,5 +69,4 @@
     align-items: flex-end;
   }
   
-  /* ... Additional styling as needed ... */
   

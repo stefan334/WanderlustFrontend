@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserFeedService {
-  private apiUrl = 'http://localhost:8080'; // Update with your API URL
+  private apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 

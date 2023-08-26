@@ -1,11 +1,9 @@
-<!-- Add a class to the search input and search results container -->
 <input type="text" [(ngModel)]="searchUsername" placeholder="Enter username" (keyup)="onSearchInputChange()" class="search-input">
 
 <div *ngIf="searchResults.length > 0" class="search-results-container">
   <h2>Search Results:</h2>
   <ul>
     <li *ngFor="let user of searchResults">
-      <!-- Display user information or provide a link to their profile -->
       <a href="javascript:void(0);" (click)="goToUserProfile(user.username)">{{ user.username }}</a>
     </li>
   </ul>

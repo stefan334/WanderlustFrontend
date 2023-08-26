@@ -26,7 +26,7 @@ export class AdminStatisticsComponent implements OnInit {
     this.fetchTotalUsers();
     this.fetchAverageLikesPerPost();
     this.fetchUserWithMostPosts();
-    const token = this.cookieService.get("token"); // Get the user token from your authentication service
+    const token = this.cookieService.get("token"); 
     const emailValue = NavbarComponent.getUserEmailFromToken(token);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -37,7 +37,6 @@ export class AdminStatisticsComponent implements OnInit {
       },
       error => {
         console.error('Error fetching user:', error);
-        // Handle error
       }
     );
     interval(10000).subscribe(() => {
@@ -49,7 +48,7 @@ export class AdminStatisticsComponent implements OnInit {
     
   }
   fetchTotalPosts() {
-    const token = this.cookieService.get("token"); // Get the user token from your authentication service
+    const token = this.cookieService.get("token"); 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.get<number>('http://localhost:8080/admin-statistics/total-posts', { headers }).subscribe((data: number) => {
       this.totalPosts = data;
@@ -57,7 +56,7 @@ export class AdminStatisticsComponent implements OnInit {
   }
 
   fetchTotalUsers() {
-    const token = this.cookieService.get("token"); // Get the user token from your authentication service
+    const token = this.cookieService.get("token"); 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.get<number>('http://localhost:8080/admin-statistics/total-users', { headers }).subscribe((data: number) => {
       this.totalUsers = data;
@@ -65,7 +64,7 @@ export class AdminStatisticsComponent implements OnInit {
   }
 
   fetchAverageLikesPerPost() {
-    const token = this.cookieService.get("token"); // Get the user token from your authentication service
+    const token = this.cookieService.get("token");
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.get<number>('http://localhost:8080/admin-statistics/average-likes-per-post', { headers }).subscribe((data: number) => {
       this.averageLikesPerPost = data;
@@ -73,7 +72,7 @@ export class AdminStatisticsComponent implements OnInit {
   }
 
   fetchUserWithMostPosts() {
-    const token = this.cookieService.get("token"); // Get the user token from your authentication service
+    const token = this.cookieService.get("token");
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     this.http.get<any>('http://localhost:8080/admin-statistics/user-with-most-posts', { headers }).subscribe((data: any) => {
       this.userWithMostPosts = data;

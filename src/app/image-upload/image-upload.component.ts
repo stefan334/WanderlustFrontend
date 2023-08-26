@@ -23,29 +23,22 @@ export class ImageUploadComponent implements AfterViewInit{
   constructor(private http: HttpClient, public cookieService: CookieService) {}
 
 
-  // ... Your existing code ...
   ngAfterViewInit(): void {
 
     console.log('ngAfterViewInit called');
-    // Ensure that the google object and the google.maps.places.AutocompleteService class are available
-      // Set up the autocomplete on the 'location' input field
       const autocompleteInput = this.autocompleteInput.nativeElement;
-      const autocompleteService = new google.maps.places.AutocompleteService();
-      const placesService = new google.maps.places.PlacesService(autocompleteInput);
-  
+      const autocompleteService = new google.maps.places.AutocompleteService();  
       const options = {
         types: ['geocode']
       };
   
-      // Add a listener to handle input changes and update predictions
+    
       autocompleteInput.addEventListener('input', () => {
         const query = autocompleteInput.value;
         if (query.length > 0) {
           autocompleteService.getPlacePredictions({ input: query, ...options }, (predictions: any[], status: any) => {
             if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-              // Create an array of suggested location names
               const suggestions = predictions.map((prediction) => prediction.description);
-              // Update the autocomplete options
               autocompleteInput.setAttribute('list', 'suggestions-list');
               const datalist = document.getElementById('suggestions-list');
               if (datalist) {
@@ -67,7 +60,6 @@ export class ImageUploadComponent implements AfterViewInit{
     this.selectedImage = event.target.files[0] as File;
   }
 
-  // Function to convert location name to latitude and longitude using Google Maps Geocoding API
   async getLocationCoordinates(location: string): Promise<any[]> {
     const geocoder = new google.maps.Geocoder();
 
@@ -83,12 +75,10 @@ export class ImageUploadComponent implements AfterViewInit{
   }
 
   async uploadImage() {
-    // Replace with the user's email
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const userEmail = NavbarComponent.getUserEmailFromToken(token);
 
-    // Convert location name to latitude and longitude
     if (this.imageLocation) {
       try {
         const geocodeResponse = await this.getLocationCoordinates(this.imageLocation);

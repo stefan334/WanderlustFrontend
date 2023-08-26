@@ -20,7 +20,6 @@ export class UserSearchComponent {
       });
   }
 
-  // Trigger the searchUsers method whenever the search input value changes
   onSearchInputChange() {
     this.searchUsers();
   }

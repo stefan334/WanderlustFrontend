@@ -3,15 +3,15 @@
   left:10%;
   position:fixed;
   width: 80%;
-  height: 80vh; /* Adjust the height of the card */
+  height: 80vh; 
   background-color: rgba(75, 72, 69, 0.8);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2%;
-  overflow: auto; /* Enable scrolling within the card container */
-  margin: auto; /* Center the card horizontally */
-  display: flex; /* Use flexbox for centering vertically */
-  flex-direction: column; /* Arrange the content in a column */
+  overflow: auto;
+  margin: auto; 
+  display: flex; 
+  flex-direction: column;
 }
   
   .feed-container {
@@ -23,9 +23,9 @@
   
 
   .post img {
-    width: 70%; /* Set the desired width */
-    height: 100%; /* Set the desired height */
-    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+    width: 70%; 
+    height: 100%; 
+    object-fit: cover; 
     
   }
   
@@ -69,13 +69,11 @@
     color: rgb(146, 146, 146);
   }
   
-  /* Additional styling for hover effect */
+
   .toggle-label:hover {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
   }
-  /* Your existing CSS styles */
-
 
 
 .post {
@@ -84,38 +82,34 @@
   display: flex;
   margin:auto;
   max-width: 50%;
-  height: auto; /* Auto height to fit the content */ 
-  position: relative; /* Add positioning for the relative positioning */
+  height: auto;
+  position: relative;
   background-color: #03030375;
 }
 
 .post-header {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Add background color */
-  color: #fff; /* Text color */
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: #fff; 
   text-align: center;
   padding: 5px;
-  position: absolute; /* Position above the image */
-  top: 0; /* Position at the top of the post */
+  position: absolute; 
+  top: 0; 
   left: 0;
 }
 
 .username {
   font-weight: bold;
   text-decoration: none;
-  color: #fff; /* Text color */
+  color: #fff; 
 }
 
 
 
-
-
-/* Your existing styles ... */
-
 .post-content {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center-align the content horizontally */
+  align-items: center; 
   margin-left:auto;
   margin-right:auto;
 }
@@ -128,7 +122,7 @@
 }
 
 .post-text {
-  flex-grow: 1; /* Allow text to take up available space */
+  flex-grow: 1; 
 }
 
 .post-details {

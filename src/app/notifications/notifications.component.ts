@@ -28,14 +28,11 @@ export class NotificationsComponent implements OnInit {
   }
 
   toggleNotifications(): void {
-    console.log("Toggle in notification");
     this.showNotifications = !this.showNotifications;
   }
 
   fetchNotifications(): void {
 
-    console.log("fetching nothing")
-    // Call the notification service to fetch notifications
     this.notificationService.getNotifications().subscribe(
       (notifications: any[]) => {
         this.notifications = notifications;

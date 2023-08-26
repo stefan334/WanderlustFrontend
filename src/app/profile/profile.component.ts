@@ -29,10 +29,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Get the username from the route
+  
     this.username = this.route.snapshot.paramMap.get('username') as any;
-    
-    // Fetch user data from the backend
     const token = this.cookieService.get('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const username = this.username; 
@@ -41,7 +39,6 @@ export class ProfileComponent implements OnInit {
       this.user = userData;
     });
 
-    // Fetch uploaded images from the backend
     this.http.get('http://localhost:8080/getImages/' + username).subscribe((images) => {
       this.images = images as any[];
       console.log(images);
@@ -61,18 +58,18 @@ export class ProfileComponent implements OnInit {
     });
     
     console.log("Current userusername " + currentUserUsername)
-    this.http.get('http://localhost:8080/getFollowing/' + currentUserUsername, { headers }).subscribe((userData: any) => {
+    this.http.get('http://localhost:8080/getFollowing/' + currentUserUsername).subscribe((userData: any) => {
       console.log("This user following:");
       console.log(userData)
       this.currentUserFollowing = userData;
     });
 
-    this.http.get('http://localhost:8080/getFollowing/' + username, { headers }).subscribe((userData: any) => {
+    this.http.get('http://localhost:8080/getFollowing/' + username).subscribe((userData: any) => {
    
       this.following = userData;
     });
 
-    this.http.get('http://localhost:8080/getFollowers/' + username, { headers }).subscribe((userData: any) => {
+    this.http.get('http://localhost:8080/getFollowers/' + username).subscribe((userData: any) => {
    
     this.followers = userData;
   });
@@ -85,23 +82,22 @@ export class ProfileComponent implements OnInit {
 
 
   isCurrentUserProfile(): boolean {
-    const currentUserEmail = this.cookieService.get('userEmail'); // Replace with the actual cookie name
+    const currentUserEmail = this.cookieService.get('userEmail');
     return this.user && this.user.email === currentUserEmail;
   }
 
   isFollowingUser(): boolean {
     if (!this.user || !this.currentUserFollowing) {
-      return false; // Return false if user or currentUserFollowing is not defined
+      return false; 
     }
   
     return this.currentUserFollowing.some(item => item.username === this.user.username);
   }
 
-// Method to handle the follow action
 followUser(): void {
   const token = this.cookieService.get('token');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  const currentUserEmail = NavbarComponent.getUserEmailFromToken(token)!;// Replace with the actual cookie name
+  const currentUserEmail = NavbarComponent.getUserEmailFromToken(token)!;
   const userEmailToFollow = this.user.email;
 
   const params = new HttpParams()
@@ -109,17 +105,16 @@ followUser(): void {
     .set('currentUserEmail', currentUserEmail);
 
   this.http.post('http://localhost:8080/follow', null, { headers, params })
-    .subscribe(() => {
-      // Refresh the user data after following
+    .subscribe(() => { 
       this.ngOnInit();
     });
 }
 
-// Method to handle the unfollow action
+
 unfollowUser(): void {
   const token = this.cookieService.get('token');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  const currentUserEmail = NavbarComponent.getUserEmailFromToken(token)!; // Replace with the actual cookie name
+  const currentUserEmail = NavbarComponent.getUserEmailFromToken(token)!;
   const userEmailToUnfollow = this.user.email;
 
   const params = new HttpParams()
@@ -128,7 +123,6 @@ unfollowUser(): void {
 
   this.http.post('http://localhost:8080/unfollow', null, { headers, params })
     .subscribe(() => {
-      // Refresh the user data after unfollowing
       this.ngOnInit();
     });
 }

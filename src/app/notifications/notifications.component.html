@@ -6,21 +6,18 @@
   <div class="notifications-list">
     <div *ngFor="let notification of notifications" class="notification">
       <ng-container *ngIf="notification.type === 'FOLLOW'">
-        <!-- Display follow notification details -->
         <p>
           <strong><a routerLink="/profile/{{ notification.sender.username }}">{{ notification.sender.username }}</a></strong>
           started following you.
         </p>
       </ng-container>
       <ng-container *ngIf="notification.type === 'LIKE'">
-        <!-- Display like notification details -->
         <p>
           <strong><a routerLink="/profile/{{ notification.sender.username }}">{{ notification.sender.username }}</a></strong>
           liked your post.
         </p>
       </ng-container>
       <ng-container *ngIf="notification.type === 'COMMENT'">
-        <!-- Display comment notification details -->
         <p>
           <strong><a routerLink="/profile/{{ notification.sender.username }}">{{ notification.sender.username }}</a></strong>
           commented on your post.

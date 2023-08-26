@@ -34,13 +34,11 @@ export class PostDetailModalComponent {
       
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 
-      // Make a POST request to add a comment to the post
       this.http.post(`http://localhost:8080/comment/${this.post.id}?email=${this.userEmail}`, { text: this.newComment }, { headers })
       .subscribe((response: any) => { 
-        // Update comments from the response
-        this.post.comments = response.comments; // Assuming the response contains updated comments
+        this.post.comments = response.comments; 
     
-        this.newComment = ''; // Clear the input field
+        this.newComment = ''; 
       });
     
     }
