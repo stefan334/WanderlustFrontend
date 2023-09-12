@@ -1,3 +1,8 @@
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+</head>
 <div class="modal-header">
   <h4 class="modal-title">{{ post.image.name }}</h4>
   <button type="button" class="close" (click)="closeModal()">
@@ -24,15 +29,21 @@
               <div *ngFor="let comment of post.comments" class="comment">
                   <div class="comment-header">
                       <strong (click)="navigateToUserProfile(comment.user.username)">
-                          {{ comment.user.username }} <span class="at-username">@{{ comment.user.username }}</span>
+                          {{ comment.user.name }} <span class="at-username">@{{ comment.user.username }}</span>
                       </strong>
                   </div>            
                   <div class="comment-text">{{ comment.commentText }}</div>
               </div>
           </div>
           <div class="comment-input">
+            <span class="likes"><i class="bi bi-heart"></i> {{ post.likes.length }} Likes </span>
               <textarea class="form-control" [(ngModel)]="newComment" rows="3" placeholder="Write a comment..."></textarea>
+              <div class = "buttons">
+              <button class="btn btn-primary mt-2" (click)="likePost(post)">
+                <i class="bi" [ngClass]="{'bi-heart': !isPostLiked(post), 'bi-heart-fill': isPostLiked(post)}"></i>
+              </button>
               <button class="btn btn-primary mt-2" (click)="publishComment()">Publish</button>
+            </div>
           </div>
       </div>
   </div>

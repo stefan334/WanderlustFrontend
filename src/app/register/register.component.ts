@@ -7,12 +7,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  name: string="";
-  email: string="";
-  username: string="";
-  password: string="";
-  error: string="";
-  succesful:string="";
+  name: string = "";
+  email: string = "";
+  username: string = "";
+  password: string = "";
+  error: string = "";
+  success: string = "";
 
   constructor(private http: HttpClient) {}
 
@@ -22,16 +22,26 @@ export class RegisterComponent implements OnInit {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { name: this.name, email: this.email, username: this.username, password: this.password };
 
+    if (!this.name || !this.email || !this.username || !this.password) {
+      this.error = "All fields are required.";
+      return;
+    }
+    if(!this.email.includes("@")) {
+      this.error = "Email does not have correct format.";
+      return;
+    }
     this.http.post<any>('http://localhost:8080/register', body, { headers }).subscribe(
       (data) => {
-        console.log(data);
+        if (data.error) {
+          this.error = data.error; // Display the error message to the user
+        } else {
+          this.success = "You have successfully registered.";
+        }
       },
       (error) => {
-        console.error(error);
-        this.error = 'An error occurred while registering. Please try again.';
+        console.error(error.error);
+        this.error = error.error.error;
       }
     );
-    if(!this.error)
-      this.succesful = "You have succesfully registered."
   }
 }

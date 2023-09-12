@@ -43,9 +43,22 @@ export class PostDetailModalComponent {
     
     }
   }
+  
+  likePost(post: any): void {
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    this.http.post(`http://localhost:8080/like/${post.id}?email=${this.userEmail}`, {}, { headers }).subscribe((response: any) => {
+      post.likes = response.likes;
+    });
+  }
 
   navigateToUserProfile(username: string): void {
     this.navigationService.navigateToProfile(username);
   }
+
+  isPostLiked(post: any): boolean {
+    return post.likes.some((like: any) => like.user.email === this.userEmail);
+  }
+  
   
 }

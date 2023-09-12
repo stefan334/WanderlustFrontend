@@ -73,23 +73,7 @@ export class NavbarComponent {
     this.modalRef = this.modalService.show(template);
   }
   
-submitForm() {
-  const token = this.cookieService.get('token');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  const email = NavbarComponent.getUserEmailFromToken(token);
 
-  const locationsArray = this.locations.split(',').map(location => location.trim());
-
-  this.http.post('http://localhost:8080/user/locations', { email, locations: locationsArray }, {headers}).subscribe(
-    () => {
-      console.log('Locations added successfully');
-      this.modalRef.hide();
-    },
-    error => {
-      console.error('Error adding locations', error);
-    }
-  );
-}
 
 
 }

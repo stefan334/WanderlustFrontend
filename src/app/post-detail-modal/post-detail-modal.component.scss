@@ -69,4 +69,13 @@
     align-items: flex-end;
   }
   
-  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .btn-width{
+    width:5vw;
+    height:4vw;
+  }

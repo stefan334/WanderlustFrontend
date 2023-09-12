@@ -1,4 +1,4 @@
-<div class="register-form">
+<div class="modal-body">
     <h2>Register</h2>
     <form>
       <div class="form-group">
@@ -13,13 +13,13 @@
         <label for="username">Username:</label>
         <input type="username" id="username" class="form-control" [(ngModel)]="username" name="username">
       </div>
-      <div class="form-g  roup">
+      <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password">
       </div>
       <div *ngIf="error" class="error-message">{{error}}</div>
       <button type="button" class="btn btn-primary" (click)="register()">Register</button>
-      <div *ngIf="succesful" class="succesful-message">{{succesful}}</div>
+      <div *ngIf="success" class="succesful-message">{{success}}</div>
     </form>
   </div>
   

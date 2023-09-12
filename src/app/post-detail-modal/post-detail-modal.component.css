@@ -86,4 +86,20 @@
       -ms-flex-align: end;
           align-items: flex-end;
 }
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn-width {
+  width: 5vw;
+  height: 4vw;
+}
 /*# sourceMappingURL=post-detail-modal.component.css.map */
